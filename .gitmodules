@@ -1,0 +1,6 @@
+[submodule "lib/micropython-stubs"]
+	path = lib/micropython-stubs
+	url = https://github.com/josverl/micropython-stubs.git
+[submodule "lib/micropython-google-auth"]
+	path = lib/micropython-google-auth
+	url = https://github.com/rspeed/micropython-google-auth.git

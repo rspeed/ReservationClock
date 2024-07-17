@@ -1,0 +1,8 @@
+[tool.ruff]
+indent-width = 2
+src = ['reservation_clock']
+
+[tool.ruff.format]
+indent-style = 'tab'
+quote-style = 'preserve'
+line-ending = 'lf'
