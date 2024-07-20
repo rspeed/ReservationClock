@@ -2,7 +2,7 @@ from typing import Iterator
 
 from ..settings import settings
 
-from .colors import Color, WHITE, BLACK
+from .color import Color, WHITE, BLACK
 
 
 __all__ = 'glyphs', 'Glyphs'
