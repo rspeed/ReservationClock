@@ -43,10 +43,10 @@ class Digit(BaseDigit):
 		self._np = NeoPixel(pin, self.PIXEL_COUNT)
 
 
-	def __call__ (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
+	def set (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
 		"""Updates the digit's value."""
 
-		super().__call__(value, color, background)
+		super().set(value, color, background)
 
 		# Set and send the pixels
 		for i, pixel_color in enumerate(glyphs.get_glyph_colors(value, color, background)):

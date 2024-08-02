@@ -16,7 +16,7 @@ class BaseDisplay:
 	m1: 'BaseDigit'
 
 
-	def __call__ (self, *, hours: int, minutes: int, color: Color = WHITE, background: Color = BLACK) -> None:
+	def set (self, *, hours: int, minutes: int, color: Color = WHITE, background: Color = BLACK) -> None:
 		"""Updates the display."""
 
 		h0:int = hours // 10
@@ -24,11 +24,11 @@ class BaseDisplay:
 			# Hide the first hour digit if it is zero
 			self.h0.fill(background)
 		else:
-			self.h0(h0, color, background)
-		self.h1(hours % 10, color, background)
+			self.h0.set(h0, color, background)
+		self.h1.set(hours % 10, color, background)
 
-		self.m0(minutes // 10, color, background)
-		self.m1(minutes % 10, color, background)
+		self.m0.set(minutes // 10, color, background)
+		self.m1.set(minutes % 10, color, background)
 
 
 	def fill (self, color: Color = BLACK) -> None:
@@ -47,7 +47,7 @@ class BaseDigit:
 	__slots__ = ()
 
 
-	def __call__ (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
+	def set (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
 		"""Updates the digit."""
 
 		if 0 > value > 9:

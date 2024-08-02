@@ -73,7 +73,7 @@ class Clock:
 		"""Periodically displays the current time."""
 
 		now: datetime = self.now
-		display(hours = now.hour, minutes = now.minute)
+		display.set(hours = now.hour, minutes = now.minute)
 
 
 	def update_countdown (self, _: Timer) -> None:
@@ -120,4 +120,4 @@ class Clock:
 			hours = minutes
 			minutes = seconds
 
-		display(hours = hours, minutes = minutes, color = color, background = background)
+		display.set(hours = hours, minutes = minutes, color = color, background = background)
