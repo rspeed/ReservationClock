@@ -9,11 +9,8 @@ __all__ = 'FakeDisplay', 'FakeDigit'
 class FakeDisplay(BaseDisplay):
 	"""Simulates a 4-digit display."""
 
-	__slots__ = ()
-
-
 	def __init__ (self) -> None:
-		for digit_name in BaseDisplay.__slots__:
+		for digit_name in BaseDisplay.digits:
 			setattr(self, digit_name, FakeDigit())
 
 
@@ -28,8 +25,6 @@ class FakeDisplay(BaseDisplay):
 
 class FakeDigit(BaseDigit):
 	"""Simulates a 7-segment digit."""
-
-	__slots__ = '_value', '_color', '_background'
 
 	_value: str | None
 	_color: Color

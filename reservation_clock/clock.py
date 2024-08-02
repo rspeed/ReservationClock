@@ -14,8 +14,6 @@ __all__ = 'Clock'
 class Clock:
 	"""Displays the current time."""
 
-	__slots__ = '_timer', '_countdown_target'
-
 	_timer: Timer | None
 	_countdown_target: datetime | None
 

@@ -15,12 +15,9 @@ __all__ = 'Display', 'Digit'
 class Display(BaseDisplay):
 	"""Controls a 4-digit display using neopixels."""
 
-	__slots__ = ()
-
-
 	def __init__ (self) -> None:
 		# Populate the `Digit`s
-		for pin_id, digit_name in zip(settings.display_gpio_pins, BaseDisplay.__slots__):
+		for pin_id, digit_name in zip(settings.display_gpio_pins, BaseDisplay.digits):
 			setattr(self, digit_name, Digit(pin_id))
 
 
@@ -29,8 +26,6 @@ class Digit(BaseDigit):
 	"""Controls a 7-segment digit."""
 
 	PIXEL_COUNT: int = 23
-
-	__slots__ = '_np'
 
 	_np: NeoPixel
 

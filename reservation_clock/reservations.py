@@ -30,8 +30,6 @@ class Reservations:
 	"""Run the callback every 300,000 milliseconds (5 minutes)."""
 	_TICK_LENGTH: int = 300_000
 
-	__slots__ = '_timer', '_credentials', 'clock'
-
 	"""Manages the periodic execution of the ``tick`` method."""
 	_timer: Timer
 

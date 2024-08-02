@@ -8,7 +8,7 @@ __all__ = 'BaseDisplay', 'BaseDigit'
 class BaseDisplay:
 	"""Base class for displays."""
 
-	__slots__ = 'h0', 'h1', 'm0', 'm1'
+	digits = ('h0', 'h1', 'm0', 'm1')
 
 	h0: 'BaseDigit'
 	h1: 'BaseDigit'
@@ -43,9 +43,6 @@ class BaseDisplay:
 
 class BaseDigit:
 	"""Base class for display digits."""
-
-	__slots__ = ()
-
 
 	def set (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
 		"""Updates the digit."""

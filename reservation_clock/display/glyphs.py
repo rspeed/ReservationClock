@@ -39,7 +39,6 @@ class Glyphs:
 	)
 	BYTES_PER_GLYPH: int = len(GLYPH_DATA) // 10
 
-	__slots__ = ()
 
 
 	@classmethod
