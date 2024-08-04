@@ -111,7 +111,7 @@ class Clock:
 				color = BLACK
 				background = RED
 
-		if minutes <= 10:
+		elif minutes <= 10:
 			color = BLACK
 			background = RED
 
