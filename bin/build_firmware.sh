@@ -3,22 +3,20 @@
 # Builds Micropython for the Raspberry Pi Pico W with frozen dependencies.
 
 #TODO: Add arguments to change the port, board, etc.
-
-SCRIPT_PATH=`realpath "${0}"`
-SCRIPT_DIR=`dirname "${SCRIPT_PATH}"`
-
-cd "${SCRIPT_DIR}"
-
 PORT="rp2"
 BOARD="RPI_PICO_W"
-FROZEN_MANIFEST=`realpath "../manifest.py"`
-MICROPYTHON_DIR=`realpath "../../micropython"`
-printf -v FROZEN_MANIFEST "%q" "${FROZEN_MANIFEST}"
 
-cd "${MICROPYTHON_DIR}"
+SCRIPT_PATH=$(realpath "${0}")
+cd "$(dirname "${SCRIPT_PATH}")"
 
-echo "${FROZEN_MANIFEST}"
+# Normalize paths (as needed)
+MANIFEST_PATH=$(realpath "../manifest.py")
+printf -v MANIFEST_PATH "%q" "${MANIFEST_PATH}"  # This needs to have escaped characters *and* be encased in double-quotes
+PORT_DIR="ports/${PORT}"
+BUILD_DIR="${PORT_DIR}/build-${BOARD}"
 
-make -j2 -C "ports/${PORT}" clean BOARD="${BOARD}"
-make -j2 -C "ports/${PORT}" submodules
-make -j2 -C "ports/${PORT}" BOARD="${BOARD}" FROZEN_MANIFEST="${FROZEN_MANIFEST}"
+cd "../../micropython"
+
+make -j2 -C "${PORT_DIR}" clean BOARD="${BOARD}"
+make -j2 -C "${PORT_DIR}" submodules
+make -j2 -C "${PORT_DIR}" BOARD="${BOARD}" FROZEN_MANIFEST="${MANIFEST_PATH}"
