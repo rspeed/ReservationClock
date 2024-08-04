@@ -1,16 +1,13 @@
-import logging
-from sys import stdout
 from micropython import alloc_emergency_exception_buf
 
+from .util.logging import get_logger
 from .util.wlan import connect_wlan
 from .util.ntp import set_clock
 
 
 __all__ = 'boot'
 
-logging.basicConfig(level = logging.WARNING, stream = stdout, filename = 'debug.log', filemode = 'w+')
-
-log = logging.getLogger(__name__)
+log = get_logger(__name__)
 
 
 

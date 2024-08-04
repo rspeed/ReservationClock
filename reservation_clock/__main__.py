@@ -1,11 +1,12 @@
-import logging
-
 from reservation_clock.reservations import Reservations
+
+from .util.logging import get_logger
+from .display import display
 
 
 __all__ = 'main'
 
-log = logging.getLogger(__name__)
+log = get_logger(__name__)
 
 
 
@@ -17,6 +18,8 @@ def main ():
 	Reservations()
 
 	log.info("Reservation Clock started.")
+
+	log.debug(display)
 
 
 

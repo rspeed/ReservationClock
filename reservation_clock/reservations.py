@@ -1,18 +1,18 @@
 from datetime import datetime, timezone, timedelta
 from requests import request, Response
-from logging import getLogger
 
 from google.oauth2.service_account import Credentials
 from google.auth.transport.requests import Request
 
 from .util.timer import Timer
+from .util.logging import get_logger
 from .clock import Clock
 from .settings import settings
 
 
 __all__ = 'Reservations'
 
-log = getLogger(__name__)
+log = get_logger(__name__)
 
 
 

@@ -1,18 +1,17 @@
-from logging import getLogger
 from time import sleep
-
 
 try:
 	from network import WLAN, STA_IF
 except ImportError:
 	WLAN = STA_IF = None
 
-from reservation_clock.settings import settings
+from ..settings import settings
+from .logging import get_logger
 
 
 __all__ = 'connect_wlan'
 
-log = getLogger(__name__)
+log = get_logger(__name__)
 
 
 

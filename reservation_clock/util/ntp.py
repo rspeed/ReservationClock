@@ -1,12 +1,12 @@
 from time import sleep
-from logging import getLogger
-
 from ntptime import settime
+
+from .logging import get_logger
 
 
 __all__ = 'set_clock'
 
-log = getLogger(__name__)
+log = get_logger(__name__)
 
 
 
