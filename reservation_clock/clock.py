@@ -27,6 +27,8 @@ class Clock:
 
 		self.clear_countdown()
 
+		self.update_time()
+
 
 	def __del__ (self) -> None:
 		"""Avoids edge cases by stopping the timer before being deleted."""
