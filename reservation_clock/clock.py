@@ -59,9 +59,11 @@ class Clock:
 	def _set_timer (self, callback: callable) -> None:
 		"""Changes the current operating mode by setting the timer callback."""
 
-		# Will be 'None' the first time this method is called
-		if self._timer is not None:
+		try:
+			# Halt current timer
 			self._timer.deinit()
+		except AttributeError:
+			pass
 
 		# Run the callback every second
 		self._timer = Timer(period = 1_000, mode = Timer.PERIODIC, callback = callback)
