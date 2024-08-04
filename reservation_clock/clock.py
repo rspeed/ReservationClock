@@ -1,4 +1,5 @@
 from datetime import datetime
+from micropython import schedule
 
 from .util.timezone import et
 from .util.timer import Timer
@@ -19,10 +20,17 @@ class Clock:
 	_timer: Timer | None
 	_countdown_target: datetime | None
 
+	_update_time_callback: Callable
+	_update_countdown_callback: Callable
+
 
 	def __init__ (self):
 		self._timer = None
 		self._countdown_target = None
+
+		# Preallocate references to the callbacks to prevent memory allocations in the Timer ISR
+		self._update_time_callback = self.update_time
+		self._update_countdown_callback = self.update_countdown
 
 		self.clear_countdown()
 
@@ -41,13 +49,13 @@ class Clock:
 			return
 
 		self._countdown_target = target
-		self._set_timer(self.update_countdown)
+		self._set_timer(self._update_countdown_callback)
 
 
 	def clear_countdown (self) -> None:
 		"""Switch to displaying the current time."""
 
-		self._set_timer(self.update_time)
+		self._set_timer(self._update_time_callback)
 		self._countdown_target = None
 
 
@@ -68,7 +76,8 @@ class Clock:
 			pass
 
 		# Run the callback every second
-		self._timer = Timer(period = 1_000, mode = Timer.PERIODIC, callback = callback)
+		# Use `micropython.schedule` to ensure the callback is executed between opcodes
+		self._timer = Timer(period = 1_000, mode = Timer.PERIODIC, callback = lambda _: schedule(callback, _))
 
 
 	def update_time (self, _: Timer) -> None:
