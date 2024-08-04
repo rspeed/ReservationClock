@@ -13,32 +13,19 @@ class Glyphs:
 	"""Efficiently stores and retrieves glyph data."""
 
 	"""
-	The bit offset vs. pixel location. These correspond to the LED strip order.
+	The default bit offset vs. pixel location. These correspond to the LED strip order.
 	
 	|-  00  01  02  03  04
-	00 [02][03][04][05][06]
-	01 [01]            [07]
-	02 [00]            [08]
-	03 [19][20][21][22][09]
-	04 [18]            [10]
-	05 [17]            [11]
-	06 [16][15][14][13][12]
+	00 [06][07][20][21][34]
+	01 [05][08][19][22][33]
+	02 [04][09][18][23][32]
+	03 [03][10][17][24][31]
+	04 [02][11][16][25][30]
+	05 [01][12][15][26][29]
+	06 [00][13][14][27][28]
 	"""
-	# noinspection SpellCheckingInspection
-	GLYPH_DATA: bytearray = bytearray.fromhex(
-		'0fffff'
-		'001fc0'
-		'7ff3fc'
-		'61fffc'
-		'781fc7'
-		'79fe7f'
-		'7ffe7f'
-		'001ffc'
-		'7fffff'
-		'781fff'
-	)
+	GLYPH_DATA: bytearray = bytearray.fromhex(settings.display_glyphs)
 	BYTES_PER_GLYPH: int = len(GLYPH_DATA) // 10
-
 
 
 	@classmethod

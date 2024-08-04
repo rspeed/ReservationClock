@@ -19,6 +19,7 @@ class Settings:
 		'google_api_scopes': [],
 		'google_calendar_id': '',
 		'display_gpio_pins': [],
+		'display_glyphs': 'b4ce9d6b01' '900c042001' '94deda4b01' '90de1e6301' 'b01c476801' 'b0d65f6b00' 'b4d6df6b00' '908c146201' 'b4dedf6b01' 'b09c576a01',
 		'display_pixel_count': 5 * 7
 	}
 
@@ -37,9 +38,11 @@ class Settings:
 	"""GPIO pins used to control the display."""
 	display_gpio_pins: list[int]
 
+	"""The binary pixel states of the digits 0-9, encoded as a hexidecimal string."""
+	display_glyphs: str
+
 	"""The number of pixels in each digit of the display."""
 	display_pixel_count: int
-
 
 	def __init__ (self) -> None:
 		"""Read the settings from storage."""
