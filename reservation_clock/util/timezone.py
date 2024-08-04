@@ -11,8 +11,6 @@ class EasternTimeZone(tzinfo):
 
 	_OFFSET: timedelta = timedelta(hours = -5)
 
-	__slots__ = '_dst_range_cache'
-
 	_dst_range_cache: dict[int, tuple[datetime, datetime]]
 
 
