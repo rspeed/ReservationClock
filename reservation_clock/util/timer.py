@@ -17,6 +17,11 @@ class FakeTimer:
 
 
 	def __init__ (self, *args, callback = None, **_) -> None:
+		if callback is not None and callable(callback):
+			callback(self)
+
+
+	def init (self, *args, callback = None, **_) -> None:
 		callback(self)
 
 

@@ -17,12 +17,12 @@ __all__ = 'Clock'
 class Clock:
 	"""Displays the current time."""
 
-	_timer: Timer | None
+	_timer: Timer
 	_countdown_target: datetime | None
 
 
 	def __init__ (self):
-		self._timer = None
+		self._timer = Timer()
 		self._countdown_target = None
 
 		self.clear_countdown()
@@ -62,15 +62,12 @@ class Clock:
 	def _set_timer (self, callback: Callable) -> None:
 		"""Changes the current operating mode by setting the timer callback."""
 
-		try:
-			# Halt current timer
-			self._timer.deinit()
-		except AttributeError:
-			pass
+		# Halt current timer
+		self._timer.deinit()
 
 		# Run the callback every second
 		# Use `micropython.schedule` to ensure the callback is executed between opcodes
-		self._timer = Timer(period = 1_000, mode = Timer.PERIODIC, callback = lambda t: schedule(callback, t))
+		self._timer.init(period = 1_000, mode = Timer.PERIODIC, callback = lambda t: schedule(callback, t))
 
 
 	def update_time (self, _: Timer | None = None) -> None:
