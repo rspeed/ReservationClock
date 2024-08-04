@@ -37,10 +37,10 @@ class FakeDigit(BaseDigit):
 		self._background = BLACK
 
 
-	def __call__ (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
+	def set (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
 		"""Updates the digit."""
 
-		super().__call__(value, color, background)
+		super().set(value, color, background)
 
 		self._value = str(value)
 		self._color = color
