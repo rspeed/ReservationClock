@@ -6,6 +6,8 @@ from .util.timer import Timer
 from .display import display
 from .display.color import Color, BLACK, RED, ORANGE, GREEN
 
+from typing import Callable
+
 
 __all__ = 'Clock'
 
@@ -56,7 +58,7 @@ class Clock:
 		return datetime.now(tz = et)
 
 
-	def _set_timer (self, callback: callable) -> None:
+	def _set_timer (self, callback: Callable) -> None:
 		"""Changes the current operating mode by setting the timer callback."""
 
 		try:
