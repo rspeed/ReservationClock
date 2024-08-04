@@ -3,11 +3,11 @@ from time import sleep
 
 
 try:
-	from network import WLAN, STA_IF, STAT_CONNECTING
+	from network import WLAN, STA_IF
 except ImportError:
-	WLAN = STA_IF = STAT_CONNECTING = None
+	WLAN = STA_IF = None
 
-from .settings import settings
+from reservation_clock.settings import settings
 
 
 __all__ = 'connect_wlan'
