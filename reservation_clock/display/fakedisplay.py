@@ -9,6 +9,7 @@ __all__ = 'FakeDisplay', 'FakeDigit'
 class FakeDisplay(BaseDisplay):
 	"""Simulates a 4-digit display."""
 
+
 	def __init__ (self) -> None:
 		self.digits = [FakeDigit() for _ in range(4)]
 

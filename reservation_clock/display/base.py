@@ -39,6 +39,7 @@ class BaseDisplay:
 class BaseDigit:
 	"""Base class for display digits."""
 
+
 	def set (self, value: int, color: Color = WHITE, background: Color = BLACK) -> None:
 		"""Updates the digit."""
 

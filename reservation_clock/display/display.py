@@ -15,6 +15,7 @@ __all__ = 'Display', 'Digit'
 class Display(BaseDisplay):
 	"""Controls a 4-digit display using neopixels."""
 
+
 	def __init__ (self) -> None:
 		# Populate the `Digit`s
 		self.digits = [Digit(pin_id) for pin_id in settings.display_gpio_pins]
