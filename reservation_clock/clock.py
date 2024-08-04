@@ -20,17 +20,10 @@ class Clock:
 	_timer: Timer | None
 	_countdown_target: datetime | None
 
-	_update_time_callback: Callable
-	_update_countdown_callback: Callable
-
 
 	def __init__ (self):
 		self._timer = None
 		self._countdown_target = None
-
-		# Preallocate references to the callbacks to prevent memory allocations in the Timer ISR
-		self._update_time_callback = self.update_time
-		self._update_countdown_callback = self.update_countdown
 
 		self.clear_countdown()
 
@@ -49,13 +42,13 @@ class Clock:
 			return
 
 		self._countdown_target = target
-		self._set_timer(self._update_countdown_callback)
+		self._set_timer(self.update_countdown)
 
 
 	def clear_countdown (self) -> None:
 		"""Switch to displaying the current time."""
 
-		self._set_timer(self._update_time_callback)
+		self._set_timer(self.update_time)
 		self._countdown_target = None
 
 
