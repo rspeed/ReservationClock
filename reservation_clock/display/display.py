@@ -17,8 +17,7 @@ class Display(BaseDisplay):
 
 	def __init__ (self) -> None:
 		# Populate the `Digit`s
-		for pin_id, digit_name in zip(settings.display_gpio_pins, BaseDisplay.digits):
-			setattr(self, digit_name, Digit(pin_id))
+		self.digits = [Digit(pin_id) for pin_id in settings.display_gpio_pins]
 
 
 

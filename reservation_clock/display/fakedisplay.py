@@ -10,8 +10,7 @@ class FakeDisplay(BaseDisplay):
 	"""Simulates a 4-digit display."""
 
 	def __init__ (self) -> None:
-		for digit_name in BaseDisplay.digits:
-			setattr(self, digit_name, FakeDigit())
+		self.digits = [FakeDigit() for _ in range(4)]
 
 
 	def __repr__ (self) -> str:
@@ -19,7 +18,7 @@ class FakeDisplay(BaseDisplay):
 
 
 	def __str__ (self) -> str:
-		return f"[{self.h0}{self.h1}:{self.m0}{self.m1}]"
+		return f"[{self.digits[0]}{self.digits[1]}:{self.digits[2]}{self.digits[3]}]"
 
 
 

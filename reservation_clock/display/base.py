@@ -8,36 +8,31 @@ __all__ = 'BaseDisplay', 'BaseDigit'
 class BaseDisplay:
 	"""Base class for displays."""
 
-	digits = ('h0', 'h1', 'm0', 'm1')
-
-	h0: 'BaseDigit'
-	h1: 'BaseDigit'
-	m0: 'BaseDigit'
-	m1: 'BaseDigit'
+	digits: list['BaseDigit']
 
 
 	def set (self, *, hours: int, minutes: int, color: Color = WHITE, background: Color = BLACK) -> None:
 		"""Updates the display."""
 
-		h0:int = hours // 10
-		if not h0:
-			# Hide the first hour digit if it is zero
-			self.h0.fill(background)
-		else:
-			self.h0.set(h0, color, background)
-		self.h1.set(hours % 10, color, background)
+		components: tuple[int | None, int, int, int] = (
+			hours // 10 or None,  # Don't show the hour's first digit when zero.
+			hours % 10,
+			minutes // 10,
+			minutes % 10
+		)
 
-		self.m0.set(minutes // 10, color, background)
-		self.m1.set(minutes % 10, color, background)
+		for v, digit in zip(components, self.digits):
+			if v is None:
+				digit.fill(background)
+			else:
+				digit.set(v, color, background)
 
 
 	def fill (self, color: Color = BLACK) -> None:
 		"""Clears the entire display."""
 
-		self.h0.fill(color)
-		self.h1.fill(color)
-		self.m0.fill(color)
-		self.m1.fill(color)
+		for digit in self.digits:
+			digit.fill(color)
 
 
 
