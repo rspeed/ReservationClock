@@ -104,7 +104,7 @@ class Clock:
 		if minutes <= 5:
 			# This should get their attention!
 			if seconds <= 2:
-				# Blink for a few seconds every minute
+				# Invert for the last two seconds of every minute
 				color = RED
 				background = BLACK
 			else:
