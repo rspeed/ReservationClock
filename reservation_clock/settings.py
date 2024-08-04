@@ -48,10 +48,7 @@ class Settings:
 
 		for key, default_value in self.DEFAULTS.items():
 			# Set local attributes to a saved value or a default
-			if hasattr(saved_settings, key):
-				setattr(self, key, saved_settings[key])
-			else:
-				setattr(self, key, deepcopy(default_value))
+			setattr(self, key, saved_settings.get(key, deepcopy(default_value)))
 
 
 	def _saved_settings (self) -> dict:
