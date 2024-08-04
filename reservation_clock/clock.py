@@ -70,17 +70,17 @@ class Clock:
 
 		# Run the callback every second
 		# Use `micropython.schedule` to ensure the callback is executed between opcodes
-		self._timer = Timer(period = 1_000, mode = Timer.PERIODIC, callback = lambda _: schedule(callback, _))
+		self._timer = Timer(period = 1_000, mode = Timer.PERIODIC, callback = lambda t: schedule(callback, t))
 
 
-	def update_time (self, _: Timer) -> None:
+	def update_time (self, _: Timer | None = None) -> None:
 		"""Periodically displays the current time."""
 
 		now: datetime = self.now
 		display.set(hours = now.hour, minutes = now.minute)
 
 
-	def update_countdown (self, _: Timer) -> None:
+	def update_countdown (self, _: Timer | None = None) -> None:
 		"""Periodically displays the remaining time."""
 
 		remaining_seconds: int = int((self._countdown_target - self.now).total_seconds())
