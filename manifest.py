@@ -7,6 +7,7 @@ metadata(description = "A clock that pulls info from a reservation system.", ver
 add_library('google-auth', 'lib/micropython-google-auth')
 
 # Dependencies
+require('argparse')
 require('copy')
 require('datetime')
 require('logging')

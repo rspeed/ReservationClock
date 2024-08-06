@@ -1,3 +1,6 @@
+from argparse import ArgumentParser
+from logging import DEBUG, INFO, WARNING, ERROR, CRITICAL
+
 from reservation_clock.reservations import Reservations
 
 from .util.logging import get_logger
@@ -24,4 +27,20 @@ def main ():
 
 
 if __name__ == '__main__':
+	log_level_map = {
+		'DEBUG': DEBUG,
+		'INFO': INFO,
+		'WARNING': WARNING,
+		'ERROR': ERROR,
+		'CRITICAL': CRITICAL
+	}
+
+	parser = ArgumentParser(description = "Runs the Reservation Clock application.")
+	# TODO: Add an argument to supply a path to the settings file.
+	parser.add_argument('--log-level', default = 'WARNING', help = f"{{{','.join(log_level_map.keys())}}}")
+	args = parser.parse_args()
+
+	# Set root logging level
+	get_logger().setLevel(log_level_map[args.log_level])
+
 	main()
