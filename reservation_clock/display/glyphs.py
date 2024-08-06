@@ -39,6 +39,8 @@ class Glyphs:
 	def get_glyph_colors (self, digit: int, on_color: Color = WHITE, off_color: Color = BLACK) -> Iterator[Color]:
 		"""Builds an iterable of pixel colors corresponding to the pixel states."""
 
+		#TODO: Support callables for color parameters to enable per-pixel colors.
+
 		# A single glyph is small enough to store as an int
 		glyph: int = int.from_bytes(self[digit], 'big')
 
