@@ -4,3 +4,4 @@
 [submodule "lib/micropython-google-auth"]
 	path = lib/micropython-google-auth
 	url = https://github.com/rspeed/micropython-google-auth.git
+	branch = development
