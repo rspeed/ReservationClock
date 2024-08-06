@@ -51,7 +51,12 @@ class Reservations:
 
 
 	def __del__ (self):
-		self._timer.deinit()
+		"""Avoids edge cases by stopping the timer before being deleted."""
+
+		try:
+			self._timer.deinit()
+		except AttributeError:
+			pass
 
 
 	def update (self, _: Timer | None):

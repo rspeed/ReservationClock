@@ -33,7 +33,10 @@ class Clock:
 	def __del__ (self) -> None:
 		"""Avoids edge cases by stopping the timer before being deleted."""
 
-		self._timer.deinit()
+		try:
+			self._timer.deinit()
+		except AttributeError:
+			pass
 
 
 	def set_countdown (self, target: datetime) -> None:
