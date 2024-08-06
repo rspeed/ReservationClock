@@ -1,8 +1,8 @@
 from datetime import datetime
-from micropython import schedule
 
 from .util.timezone import et
 from .util.timer import Timer
+from .util.schedule import schedule
 
 from .display import display
 from .display.color import Color, BLACK, RED, ORANGE, GREEN
